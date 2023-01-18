@@ -30,5 +30,6 @@ void operatorControl() {
 	while (1) {
 		printf("Hello hsamba !\n");
 		delay(20);
+		//hi
 	}
 }
