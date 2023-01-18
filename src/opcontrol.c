@@ -28,7 +28,7 @@
  */
 void operatorControl() {
 	while (1) {
-		printf("Hello hsamba !\n");
+		printf("Hello from SB !\n");
 		delay(20);
 		//hi
 	}
