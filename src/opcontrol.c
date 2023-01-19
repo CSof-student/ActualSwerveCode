@@ -28,7 +28,8 @@
  */
 void operatorControl() {
 	while (1) {
-		printf("Hello hsamba and Caroliine uo!\n");
+		printf("Hello from SB and Caroliine uo!\n");
 		delay(20);
+		//hi
 	}
 }
