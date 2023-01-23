@@ -28,7 +28,7 @@
  */
 void operatorControl() {
 	while (1) {
-		print("Hello from SB and me2\n");
+		print("Hello from SB and me2 oh yeah and this\n");
 		delay(20);
 		//hi
 	}
