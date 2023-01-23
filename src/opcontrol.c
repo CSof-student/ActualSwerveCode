@@ -28,7 +28,7 @@
  */
 void operatorControl() {
 	while (1) {
-		printf("Hello from SB and Caroliine uo!\n");
+		print("Hello from SB and me\n");
 		delay(20);
 		//hi
 	}
