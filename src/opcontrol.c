@@ -31,5 +31,12 @@ void operatorControl() {
 		print("Hello from SB and me2 oh yeah and this\n");
 		delay(20);
 		//hi
+		while (1) {
+        //power = joystickGetAnalog(1, 2); // vertical axis on left joystick
+        //turn  = joystickGetAnalog(1, 1); // horizontal axis on left joystick
+        motorSet(9,60); // set left wheels
+        motorSet(10, 60); // set right wheels
+        delay(20);
+    }
 	}
 }
