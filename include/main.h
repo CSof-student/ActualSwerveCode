@@ -32,6 +32,14 @@
 extern "C" {
 #endif
 
+
+// Digital port number for top and bottom port of quad encoder
+#define QUAD_TOP_PORT 1
+#define QUAD_BOTTOM_PORT 2
+
+// Multiple encoders can be declared
+Encoder encoder;
+
 // A function prototype looks exactly like its declaration, but with a semicolon instead of
 // actual code. If a function does not match a prototype, compile errors will occur.
 

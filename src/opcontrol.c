@@ -26,17 +26,20 @@
  *
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
+void closeLoopControl(int Mnum, int target){
+    int counts = encoderGet(encoder);
+    float kp = .1;
+    int error = target - counts;
+    int output = kp*error;
+    motorSet(Mnum,output);
+    wait(20);
+}
 void operatorControl() {
+    encoderReset(encoder);
 	while (1) {
-		print("Hello from SB and me2 oh yeah and this\n");
-		delay(20);
-		//hi
-		while (1) {
-        //power = joystickGetAnalog(1, 2); // vertical axis on left joystick
-        //turn  = joystickGetAnalog(1, 1); // horizontal axis on left joystick
-        motorSet(9,60); // set left wheels
-        motorSet(10, 60); // set right wheels
-        delay(20);
-    }
+		print("Hello from SB and me2 oh yeah this\n");
+        closeLoopControl(9,60);
+        wait(20);
+    
 	}
 }
