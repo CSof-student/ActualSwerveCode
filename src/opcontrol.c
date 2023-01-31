@@ -26,20 +26,31 @@
  *
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
-void closeLoopControl(int Mnum, int target){
-    int counts = encoderGet(encoder);
+
+
+void closeLoopControl(int Mnum, int target, Encoder e){
+    int counts = encoderGet(e);
     float kp = .1;
     int error = target - counts;
     int output = kp*error;
     motorSet(Mnum,output);
-    wait(20);
+    wait(.20);
 }
 void operatorControl() {
-    encoderReset(encoder);
-	while (1) {
-		print("Hello from SB and me2 oh yeah this\n");
-        closeLoopControl(9,60);
-        wait(20);
+    //encoderReset(FRencoder);
+    Encoder FRencoder;     
+    FRencoder = encoderInit(QUAD_TOP_PORT, QUAD_BOTTOM_PORT, false);
+	while(true) {
+		print("Hello from SB and me2 oh yeah ththatis\n");
+        while(joystickGetAnalog(1,1) > 0){
+            
+            encoderReset(FRencoder);
+            int count = encoderGet(FRencoder) + 10;
+            motorSet(9,count);
+            wait(.2);
+        }
+        
+        wait(0.220);   
     
 	}
 }
