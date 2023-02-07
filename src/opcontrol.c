@@ -40,17 +40,27 @@ void operatorControl() {
     //encoderReset(FRencoder);
     Encoder FRencoder;     
     FRencoder = encoderInit(QUAD_TOP_PORT, QUAD_BOTTOM_PORT, false);
+    encoderReset(FRencoder);
 	while(true) {
-		print("Hello from SB and me2 oh yeah ththatis\n");
-        while(joystickGetAnalog(1,1) > 0){
-            
-            encoderReset(FRencoder);
-            int count = encoderGet(FRencoder) + 10;
-            motorSet(9,count);
-            wait(.2);
-        }
+		/*print("Hello from SB and me2 oh yeah ththatis\n");
+        //std::cout << "hello world" << std::endl;
+
+       //while(joystickGetAnalog(1,1) != 0){   
+         if(encoderGet(FRencoder) > 200||encoderGet(FRencoder) < -200){
+            //motorSet(9,20);
+            print("hi");
+         }
+         else{
+            print ("bye");
+         }
+             wait(2000);   
+
+        //}
         
-        wait(0.220);   
     
-	}
+	}*/
+    double val = atan2(joystickGetAnalog(1,2),joystickGetAnalog(1,1));
+    printf("\n",val);
+    wait(1000);
+    }
 }
