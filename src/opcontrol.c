@@ -59,8 +59,8 @@ void operatorControl() {
         
     
 	}*/
-    double val = atan2(joystickGetAnalog(1,2),joystickGetAnalog(1,1));
-    printf("\n",val);
+    float val = atan2(joystickGetAnalog(1,2),joystickGetAnalog(1,1))*(180/3.1415);
+    printf("%f \n",val);
     wait(1000);
     }
 }
