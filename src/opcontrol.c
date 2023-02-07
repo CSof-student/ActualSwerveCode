@@ -36,12 +36,23 @@ void closeLoopControl(int Mnum, int target, Encoder e){
     motorSet(Mnum,output);
     wait(.20);
 }
+
+void closeLoopControlFR(int mNum, int target, Encoder e){
+    int counts = encoderGet(e);
+    float kp = 0.1;
+    float error = target - counts;
+    float output = kp * error;
+    motorSet(mNum,output);
+    print("hi");
+}
 void operatorControl() {
     //encoderReset(FRencoder);
     Encoder FRencoder;     
     FRencoder = encoderInit(QUAD_TOP_PORT, QUAD_BOTTOM_PORT, false);
     encoderReset(FRencoder);
 	while(true) {
+        closeLoopControlFR(9,300,FRencoder);
+        wait(50);
 		/*print("Hello from SB and me2 oh yeah ththatis\n");
         //std::cout << "hello world" << std::endl;
 
@@ -59,8 +70,8 @@ void operatorControl() {
         
     
 	}*/
-    double val = atan2(joystickGetAnalog(1,2),joystickGetAnalog(1,1));
+    /*double val = atan2(joystickGetAnalog(1,2),joystickGetAnalog(1,1));
     printf("\n",val);
-    wait(1000);
+    wait(1000);*/
     }
 }
