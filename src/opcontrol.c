@@ -27,25 +27,39 @@
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
 
-
-void closeLoopControl(int Mnum, int target, Encoder e){
+void closeLoopControl(int Mnum, int target, Encoder e)
+{
     int counts = encoderGet(e);
-    float kp = .1;
-    int error = target - counts;
-    int output = kp*error;
-    motorSet(Mnum,output);
-    wait(.20);
+    float kp = .4;
+    float error = target - counts;
+    float output = kp * error;
+    motorSet(Mnum, output);
+    wait(20);
+    printf("output: %f \n", output);
+    printf("counts: %d \n", counts);
 }
-void operatorControl() {
-    //encoderReset(FRencoder);
-    Encoder FRencoder;     
+
+void operatorControl()
+{
+    // encoderReset(FRencoder);
+    Encoder FRencoder;
     FRencoder = encoderInit(QUAD_TOP_PORT, QUAD_BOTTOM_PORT, false);
+    Encoder FLencoder;
+    FLencoder = encoderInit(QUAD_TOP_PORT2, QUAD_BOTTOM_PORT2, false);
+    Encoder BRencoder;
+    BRencoder = encoderInit(QUAD_TOP_PORT3, QUAD_BOTTOM_PORT3, false);
+    Encoder BLencoder;
+    BLencoder = encoderInit(QUAD_TOP_PORT4, QUAD_BOTTOM_PORT4, false);
+    encoderReset(FLencoder);
     encoderReset(FRencoder);
-	while(true) {
-		/*print("Hello from SB and me2 oh yeah ththatis\n");
+    encoderReset(BRencoder);
+    encoderReset(BLencoder);
+    while (true)
+    {
+        /*print("Hello from SB and me2 oh yeah ththatis\n");
         //std::cout << "hello world" << std::endl;
 
-       //while(joystickGetAnalog(1,1) != 0){   
+       //while(joystickGetAnalog(1,1) != 0){
          if(encoderGet(FRencoder) > 200||encoderGet(FRencoder) < -200){
             //motorSet(9,20);
             print("hi");
@@ -53,14 +67,19 @@ void operatorControl() {
          else{
             print ("bye");
          }
-             wait(2000);   
+             wait(2000);
 
         //}
-        
-    
-	}*/
-    float val = atan2(joystickGetAnalog(1,2),joystickGetAnalog(1,1))*(180/3.1415);
-    printf("%f \n",val);
-    wait(1000);
+
+
+    }*/
+        closeLoopControl(9, atan2(joystickGetAnalog(1, 2), joystickGetAnalog(1, 1)) * (180 / 3.1415), FRencoder);
+        closeLoopControl(7, atan2(joystickGetAnalog(1, 2), joystickGetAnalog(1, 1)) * (180 / 3.1415), FLencoder);
+        closeLoopControl(8, atan2(joystickGetAnalog(1, 2), joystickGetAnalog(1, 1)) * (180 / 3.1415), BRencoder);
+        closeLoopControl(6, atan2(joystickGetAnalog(1, 2), joystickGetAnalog(1, 1)) * (180 / 3.1415), BLencoder);
+
+        float val = atan2(joystickGetAnalog(1, 2), joystickGetAnalog(1, 1)) * (180 / 3.1415);
+        printf("joystick val: %f \n", val);
+        wait(20);
     }
 }

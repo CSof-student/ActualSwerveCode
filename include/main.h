@@ -29,6 +29,13 @@
 
 #define QUAD_TOP_PORT 1
 #define QUAD_BOTTOM_PORT 2
+#define QUAD_TOP_PORT2 3
+#define QUAD_BOTTOM_PORT2 4
+#define QUAD_TOP_PORT3 5
+#define QUAD_BOTTOM_PORT3 6
+#define QUAD_TOP_PORT4 7
+#define QUAD_BOTTOM_PORT4 8
+
 
 // Multiple encoders can be declared
 //Encoder encoder;
