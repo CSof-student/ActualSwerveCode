@@ -33,6 +33,11 @@ void spinTo(int Mnum, Encoder e, int target){
     float output = kp * error;
     motorSet(Mnum, output);
     wait(20);
+    printf("%f", error);
+    printf("hehehe");
+    if(error<12){
+      break;
+    }
     //break condition
   }
 }
@@ -52,6 +57,7 @@ void autonomous() {
     encoderReset(FRencoder);
     encoderReset(BRencoder);
     encoderReset(BLencoder);
-  
-  
+    spinTo(9,FRencoder,90);
+    printf("done");
+    wait(1000000);
 }

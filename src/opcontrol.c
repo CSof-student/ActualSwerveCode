@@ -27,6 +27,18 @@
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
 
+void closeLoopControlBL(int Mnum, int target, Encoder e)
+{
+    int counts = encoderGet(e);
+    float kp = .4;
+    float error = target - counts;
+    float output = kp * error;
+    motorSet(Mnum, output);
+    wait(20);
+    //printf("output: %f \n", output);
+    //printf("counts: %d \n", counts);
+}
+
 void closeLoopControl(int Mnum, int target, Encoder e)
 {
     int counts = encoderGet(e);
@@ -35,7 +47,7 @@ void closeLoopControl(int Mnum, int target, Encoder e)
     float output = kp * error;
     motorSet(Mnum, output);
     wait(20);
-    printf("output: %f \n", output);
+    //printf("output: %f \n", output);
     //printf("counts: %d \n", counts);
 }
 
@@ -60,31 +72,19 @@ void operatorControl()
     encoderReset(BLencoder);
     while (true)
     {
-        /*print("Hello from SB and me2 oh yeah ththatis\n");
-        //std::cout << "hello world" << std::endl;
-
-       //while(joystickGetAnalog(1,1) != 0){
-         if(encoderGet(FRencoder) > 200||encoderGet(FRencoder) < -200){
-            //motorSet(9,20);
-            print("hi");
-         }
-         else{
-            print ("bye");
-         }
-             wait(2000);
-
-        //}
-
-
-    }*/
+        
+    
         closeLoopControl(9, atan2(joystickGetAnalog(1, 2), joystickGetAnalog(1, 1)) * (180 / 3.1415), FRencoder);
         closeLoopControl(7, atan2(joystickGetAnalog(1, 2), joystickGetAnalog(1, 1)) * (180 / 3.1415), FLencoder);
         closeLoopControl(8, atan2(joystickGetAnalog(1, 2), joystickGetAnalog(1, 1)) * (180 / 3.1415), BRencoder);
-        closeLoopControl(6, atan2(joystickGetAnalog(1, 2), joystickGetAnalog(1, 1)) * (180 / 3.1415), BLencoder);
-
-        printf("%f \n", encoderGet(BLencoder));
+        closeLoopControlBL(6, atan2(joystickGetAnalog(1, 2), joystickGetAnalog(1, 1)) * (180 / 3.1415), BLencoder);
+        //BL looks weird check tmr
+        //motor geared differently??
+        //new close loop control with higher KP
+        //printf("%f \n", encoderGet(BLencoder));
 
         float val = atan2(joystickGetAnalog(1, 2), joystickGetAnalog(1, 1)) * (180 / 3.1415);
+        printf("%d \n", motorGet(6));
         //printf("joystick val: %f \n", val);
         wait(20);
     }
