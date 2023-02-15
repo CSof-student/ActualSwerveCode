@@ -36,12 +36,16 @@ void closeLoopControl(int Mnum, int target, Encoder e)
     motorSet(Mnum, output);
     wait(20);
     printf("output: %f \n", output);
-    printf("counts: %d \n", counts);
+    //printf("counts: %d \n", counts);
 }
 
 void operatorControl()
 {
     // encoderReset(FRencoder);
+
+    //inititalizes and sets all and enccders to 0
+    Ultrasonic sonar;
+    //sonar = ultrasonicInit(orange_port_number, yellow_port_number);
     Encoder FRencoder;
     FRencoder = encoderInit(QUAD_TOP_PORT, QUAD_BOTTOM_PORT, false);
     Encoder FLencoder;
@@ -78,8 +82,10 @@ void operatorControl()
         closeLoopControl(8, atan2(joystickGetAnalog(1, 2), joystickGetAnalog(1, 1)) * (180 / 3.1415), BRencoder);
         closeLoopControl(6, atan2(joystickGetAnalog(1, 2), joystickGetAnalog(1, 1)) * (180 / 3.1415), BLencoder);
 
+        printf("%f \n", encoderGet(BLencoder));
+
         float val = atan2(joystickGetAnalog(1, 2), joystickGetAnalog(1, 1)) * (180 / 3.1415);
-        printf("joystick val: %f \n", val);
+        //printf("joystick val: %f \n", val);
         wait(20);
     }
 }
