@@ -23,7 +23,35 @@
  * The autonomous task may exit, unlike operatorControl() which should never exit. If it does
  * so, the robot will await a switch to another mode or disable/enable cycle.
  */
+
+void spinTo(int Mnum, Encoder e, int target){
+  
+    float kp = .4;
+  while(true){
+    int counts = encoderGet(e);
+    float error = target - counts;
+    float output = kp * error;
+    motorSet(Mnum, output);
+    wait(20);
+    //break condition
+  }
+}
 void autonomous() {
   //hi Mom :)
+  Ultrasonic sonar;
+    //sonar = ultrasonicInit(orange_port_number, yellow_port_number);
+    Encoder FRencoder;
+    FRencoder = encoderInit(QUAD_TOP_PORT, QUAD_BOTTOM_PORT, false);
+    Encoder FLencoder;
+    FLencoder = encoderInit(QUAD_TOP_PORT2, QUAD_BOTTOM_PORT2, false);
+    Encoder BRencoder;
+    BRencoder = encoderInit(QUAD_TOP_PORT3, QUAD_BOTTOM_PORT3, false);
+    Encoder BLencoder;
+    BLencoder = encoderInit(QUAD_TOP_PORT4, QUAD_BOTTOM_PORT4, false);
+    encoderReset(FLencoder);
+    encoderReset(FRencoder);
+    encoderReset(BRencoder);
+    encoderReset(BLencoder);
+  
   
 }
