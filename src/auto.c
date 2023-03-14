@@ -33,8 +33,9 @@ void spinTo(int Mnum, Encoder e, int target){
     float output = kp * error;
     motorSet(Mnum, output);
     wait(20);
-    printf("%f", error);
-    printf("hehehe");
+    printf("%f \n", error);
+    printf("counts: %f \n counts");
+    //printf("hehehe");
     if(error<12){
       break;
     }
@@ -53,10 +54,7 @@ void autonomous() {
     BRencoder = encoderInit(QUAD_TOP_PORT3, QUAD_BOTTOM_PORT3, false);
     Encoder BLencoder;
     BLencoder = encoderInit(QUAD_TOP_PORT4, QUAD_BOTTOM_PORT4, false);
-    encoderReset(FLencoder);
-    encoderReset(FRencoder);
-    encoderReset(BRencoder);
-    encoderReset(BLencoder);
+
     spinTo(9,FRencoder,90);
     printf("done");
     wait(1000000);

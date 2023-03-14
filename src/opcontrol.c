@@ -70,6 +70,12 @@ void operatorControl()
     encoderReset(FRencoder);
     encoderReset(BRencoder);
     encoderReset(BLencoder);
+    while(true){
+       /* if(joystickGetDigital(1,8,JOY_UP)){
+            autonomous();
+        }*/
+        printf("howdy");
+    }
     while (true)
     {
         
@@ -84,8 +90,9 @@ void operatorControl()
         //printf("%f \n", encoderGet(BLencoder));
 
         float val = atan2(joystickGetAnalog(1, 2), joystickGetAnalog(1, 1)) * (180 / 3.1415);
-        printf("%d \n", motorGet(6));
+        //printf("%d \n", motorGet(6));
         //printf("joystick val: %f \n", val);
         wait(20);
     }
 }
+
