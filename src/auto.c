@@ -44,7 +44,7 @@ void spinTo(int Mnum, Encoder e, int target){
 }
 void autonomous() {
   //hi Mom :)
-  Ultrasonic sonar;
+  /*Ultrasonic sonar;
     //sonar = ultrasonicInit(orange_port_number, yellow_port_number);
     Encoder FRencoder;
     FRencoder = encoderInit(QUAD_TOP_PORT, QUAD_BOTTOM_PORT, false);
@@ -57,5 +57,5 @@ void autonomous() {
 
     spinTo(9,FRencoder,90);
     printf("done");
-    wait(1000000);
+    wait(1000000);*/
 }
